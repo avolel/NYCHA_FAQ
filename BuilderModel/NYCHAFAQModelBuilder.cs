@@ -28,7 +28,7 @@ namespace BuilderModel
 
 			//create data sets for trainiing and testing
 			trainingData = context.Data.CreateEnumerable<NYCHAFAQModel>(data, reuseRowObject: false);
-			testingData = trainingData.Skip(Math.Max(0,trainingData.Count() - 11));
+			testingData = trainingData.Skip(Math.Max(0,trainingData.Count() - 20));
 			
 			//Create our pipeline and set our training model
 			var pipeline = context.Transforms.Conversion.MapValueToKey(outputColumnName: "Label", inputColumnName: "Answer") //converts string to key value for training
