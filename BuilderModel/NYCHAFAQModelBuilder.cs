@@ -28,13 +28,8 @@ namespace BuilderModel
 
 			//create data sets for trainiing and testing
 			trainingData = context.Data.CreateEnumerable<NYCHAFAQModel>(data, reuseRowObject: false);
-			testingData = new List<NYCHAFAQModel>()
-			{
-				new NYCHAFAQModel() {Question = "How do I get into public housing?", Answer = "Apply Online You may apply online at (http://apply.nycha.info) from any device with Internet access; or you may file online from any of our Walk-in centers. Get a Paper Application Call or visit NYCHA’s Customer Contact Center to get a paper application Submit a request to have an application mailed to you."},
-				new NYCHAFAQModel() {Question = "How often should I file an application?", Answer =  "If you are still interested in applying for public housing you can re-apply every 12 months. If you have not been invited for an eligibility interview, you must file a new application every 12 months to remain on the waiting list. You will retain the filing date from your original application."},
-				new NYCHAFAQModel() {Question = "How old must I be to apply for public housing?", Answer = "You must be at least 18 years or older, or an emancipated minor to be eligible to apply for public housing. An emancipated minor is a child who has been granted the status of adulthood by a court order or other formal arrangement. In the United States, there are three main ways for a teenager to become emancipated and they are: Court petition; Marriage and Military Service."}
-			};
-
+			testingData = trainingData.Skip(Math.Max(0,trainingData.Count() - 11));
+			
 			//Create our pipeline and set our training model
 			var pipeline = context.Transforms.Conversion.MapValueToKey(outputColumnName: "Label", inputColumnName: "Answer") //converts string to key value for training
 				.Append(context.Transforms.Text.FeaturizeText("Features", "Question")) //creates features from our text string
