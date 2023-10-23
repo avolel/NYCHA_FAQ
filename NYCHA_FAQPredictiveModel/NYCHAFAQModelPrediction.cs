@@ -11,9 +11,9 @@ namespace NYCHA_FAQPredictiveModel
 		private TransformerChain<KeyToValueMappingTransformer> model;
 		private string fileName = "NYCHAFAQModel.zip";
 
-		public NYCHAFAQModelPrediction(MLContext _context)
+		public NYCHAFAQModelPrediction()
 		{
-			this.context = _context;
+			this.context = new MLContext();
 		}
 
 		public PredictionModel Predict(NYCHAFAQModel Question)

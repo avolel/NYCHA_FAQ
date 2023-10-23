@@ -1,8 +1,6 @@
-﻿using Microsoft.ML;
-using BuilderModel;
+﻿using BuilderModel;
 
-MLContext context = new MLContext();
-NYCHAFAQModelBuilder nychaFAQ = new NYCHAFAQModelBuilder(context);
+NYCHAFAQModelBuilder nychaFAQ = new NYCHAFAQModelBuilder();
 
 nychaFAQ.TrainModel();
 nychaFAQ.TestModel();

@@ -8,14 +8,14 @@ namespace BuilderModel
 	public class NYCHAFAQModelBuilder
 	{
 		private MLContext context;
-		private IEnumerable<NYCHAFAQModel> trainingData;
-		private IEnumerable<NYCHAFAQModel> testingData;
+		private IDataView trainingData;
+		private IDataView testingData;
 		private TransformerChain<KeyToValueMappingTransformer> model;
 		private string fileName = "NYCHAFAQModel.zip";
 
-		public NYCHAFAQModelBuilder(MLContext _context)
+		public NYCHAFAQModelBuilder()
 		{
-			this.context = _context;
+			this.context = new MLContext();
 		}
 
 		public void TrainModel()
@@ -23,12 +23,13 @@ namespace BuilderModel
 			context.Log += new EventHandler<LoggingEventArgs>(LogMLEvents);
 
 			//Load data from csv file
-			var data = context.Data.LoadFromTextFile<NYCHAFAQModel>("NYCHA_FAQ.csv", hasHeader: true, separatorChar: ',', allowQuoting: true, allowSparse: true, trimWhitespace: true);
+			IDataView data = context.Data.LoadFromTextFile<NYCHAFAQModel>("NYCHA_FAQ.csv", hasHeader: true, separatorChar: ',');
 
 
 			//create data sets for trainiing and testing
-			trainingData = context.Data.CreateEnumerable<NYCHAFAQModel>(data, reuseRowObject: false);
-			testingData = trainingData.Skip(Math.Max(0,trainingData.Count() - 20));
+			DataOperationsCatalog.TrainTestData dataSplit = context.Data.TrainTestSplit(data, testFraction: 0.2, seed: 1234);
+			trainingData = dataSplit.TrainSet;
+			testingData = dataSplit.TestSet;
 			
 			//Create our pipeline and set our training model
 			var pipeline = context.Transforms.Conversion.MapValueToKey(outputColumnName: "Label", inputColumnName: "Answer") //converts string to key value for training
@@ -37,25 +38,26 @@ namespace BuilderModel
 				.Append(context.Transforms.Conversion.MapKeyToValue(outputColumnName: "PredictedAnswer", inputColumnName: "PredictedLabel")); //convert our key back to a label
 
 			//trains the model
-			model = pipeline.Fit(context.Data.LoadFromEnumerable(trainingData));
+			model = pipeline.Fit(trainingData);
 		}
 
 		public void TestModel()
 		{
 			//transform data to a view that can be evaluated
-			IDataView testDataPredictions = model.Transform(context.Data.LoadFromEnumerable(testingData));
+			IDataView testDataPredictions = model.Transform(testingData);
 			//evaluate test data against trained model for accuracy
-			var metrics = context.MulticlassClassification.Evaluate(testDataPredictions);
-			double accuracy = metrics.MacroAccuracy;
+			MulticlassClassificationMetrics metrics = context.MulticlassClassification.Evaluate(testDataPredictions);
 
-			Console.WriteLine("Accuracy {0}", accuracy.ToString());
+			Console.WriteLine($"Macro Accuracy {metrics.MacroAccuracy}");
+			Console.WriteLine($"Micro Accuracy: {metrics.MicroAccuracy}");
+			Console.WriteLine($"Log Loss: {metrics.LogLoss}");
+			Console.WriteLine();
+			Console.WriteLine();
+			Console.WriteLine(metrics.ConfusionMatrix.GetFormattedConfusionTable());
 		}
 
-		public void SaveModel()
-		{
-			IDataView dataView = context.Data.LoadFromEnumerable<NYCHAFAQModel>(trainingData);
-			context.Model.Save(model, dataView.Schema, fileName);
-		}
+		public void SaveModel() =>
+			context.Model.Save(model, trainingData.Schema, fileName);
 
 		private static void LogMLEvents(object sender, LoggingEventArgs e) =>
 			Console.WriteLine(e.RawMessage);
