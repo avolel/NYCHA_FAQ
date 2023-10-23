@@ -23,11 +23,11 @@ namespace BuilderModel
 			context.Log += new EventHandler<LoggingEventArgs>(LogMLEvents);
 
 			//Load data from csv file
-			IDataView data = context.Data.LoadFromTextFile<NYCHAFAQModel>("NYCHA_FAQ.csv", hasHeader: true, separatorChar: ',');
+			IDataView data = context.Data.LoadFromTextFile<NYCHAFAQModel>("NYCHA_FAQ.csv", hasHeader: false, separatorChar: ',');
 
 
 			//create data sets for trainiing and testing
-			DataOperationsCatalog.TrainTestData dataSplit = context.Data.TrainTestSplit(data, testFraction: 0.2, seed: 1234);
+			DataOperationsCatalog.TrainTestData dataSplit = context.Data.TrainTestSplit(data, testFraction: 0.2, seed: 1234, samplingKeyColumnName: "Answer");
 			trainingData = dataSplit.TrainSet;
 			testingData = dataSplit.TestSet;
 			

@@ -15,8 +15,8 @@ namespace NYCHA_FAQ.Controllers
 			_logger = logger;
 		}
 
-		[HttpGet(Name = "GetPrediction")]
-		public PredictionModel Get(string message)
+		[HttpPost(Name = "GetPrediction")]
+		public PredictionModel PostGetPrediction([FromBody]string message)
 		{
 			NYCHAFAQModelPrediction predict = new NYCHAFAQModelPrediction();
 			NYCHAFAQModel question = new NYCHAFAQModel()
