@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj" />
-    <ProjectReference Include="..\NYCHA_FAQPredictiveModel\NYCHA_FAQPredictiveModel.csproj" />
+    <ProjectReference Include="..\NYCHA_FAQ_ModelBuilder\NYCHA_FAQ_ModelBuilder.csproj" />
   </ItemGroup>
 
   <ItemGroup>

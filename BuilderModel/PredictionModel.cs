@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML.Data;
 
-namespace NYCHA_FAQPredictiveModel
+namespace BuilderModel
 {
 	public class PredictionModel
 	{

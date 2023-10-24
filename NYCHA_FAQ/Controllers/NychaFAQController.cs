@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models;
-using NYCHA_FAQPredictiveModel;
+using BuilderModel;
 
 namespace NYCHA_FAQ.Controllers
 {

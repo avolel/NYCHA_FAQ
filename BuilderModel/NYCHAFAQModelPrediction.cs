@@ -3,7 +3,7 @@ using Microsoft.ML.Data;
 using Microsoft.ML.Transforms;
 using Models;
 
-namespace NYCHA_FAQPredictiveModel
+namespace BuilderModel
 {
 	public class NYCHAFAQModelPrediction
 	{
@@ -28,7 +28,7 @@ namespace NYCHA_FAQPredictiveModel
 
 			//get score, score is an array and the max score will align to key.
 			float score = prediction.Score.Max();
-			
+
 			return prediction;
 		}
 

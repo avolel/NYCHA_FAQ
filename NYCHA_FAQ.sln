@@ -5,13 +5,11 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYCHA_FAQ", "NYCHA_FAQ\NYCHA_FAQ.csproj", "{F51FE3D2-303F-426B-9354-E37BE690336D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYCHA_FAQ_ModelBuilder", "NYCHA_FAQ_ModelBuilder\NYCHA_FAQ_ModelBuilder.csproj", "{8C272295-07F0-4DB1-8B54-68AF4FA44766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYCHA_FAQ_ModelBuilder", "NYCHA_FAQ_ModelBuilder\NYCHA_FAQ_ModelBuilder.csproj", "{8C272295-07F0-4DB1-8B54-68AF4FA44766}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{1C6C6AA7-1DE6-49A5-9BBA-42FF8ECED024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{1C6C6AA7-1DE6-49A5-9BBA-42FF8ECED024}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYCHA_FAQPredictiveModel", "NYCHA_FAQPredictiveModel\NYCHA_FAQPredictiveModel.csproj", "{44863D47-C3BD-4DA7-A241-C8EA6E9074C5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuilderModel", "BuilderModel\BuilderModel.csproj", "{619418BE-268C-43AB-BCF6-886579C7BA81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuilderModel", "BuilderModel\BuilderModel.csproj", "{619418BE-268C-43AB-BCF6-886579C7BA81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{1C6C6AA7-1DE6-49A5-9BBA-42FF8ECED024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C6C6AA7-1DE6-49A5-9BBA-42FF8ECED024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C6C6AA7-1DE6-49A5-9BBA-42FF8ECED024}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44863D47-C3BD-4DA7-A241-C8EA6E9074C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44863D47-C3BD-4DA7-A241-C8EA6E9074C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44863D47-C3BD-4DA7-A241-C8EA6E9074C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44863D47-C3BD-4DA7-A241-C8EA6E9074C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{619418BE-268C-43AB-BCF6-886579C7BA81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{619418BE-268C-43AB-BCF6-886579C7BA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619418BE-268C-43AB-BCF6-886579C7BA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
