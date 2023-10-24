@@ -1,7 +1,6 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Transforms;
-using Models;
 
 namespace BuilderModel
 {

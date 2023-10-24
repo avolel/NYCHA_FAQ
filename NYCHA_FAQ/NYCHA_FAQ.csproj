@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BuilderModel\BuilderModel.csproj" />
-    <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
